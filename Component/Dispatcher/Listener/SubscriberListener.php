@@ -13,6 +13,7 @@
 
 namespace CCDNForum\ForumBundle\Component\Dispatcher\Listener;
 
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -43,9 +44,9 @@ class SubscriberListener implements EventSubscriberInterface
     /**
      *
      * @access protected
-     * @var \Symfony\Component\Security\Core\SecurityContext $securityContext
+     * @var \Symfony\Component\Security\Core\Authorization\AuthorizationChecker $security
      */
-    protected $securityContext;
+    protected $security;
 
     /**
      *
@@ -53,10 +54,10 @@ class SubscriberListener implements EventSubscriberInterface
      * @param \CCDNForum\ForumBundle\Model\FrontModel\SubscriptionModel $subscriptionModel
      * @param \Symfony\Component\Security\Core\SecurityContext          $securityContext
      */
-    public function __construct($subscriptionModel, SecurityContext $securityContext)
+    public function __construct($subscriptionModel, AuthorizationChecker $security)
     {
         $this->subscriptionModel = $subscriptionModel;
-        $this->securityContext = $securityContext;
+        $this->security = $security;
     }
 
     /**
