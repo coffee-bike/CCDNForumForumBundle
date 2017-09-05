@@ -55,7 +55,7 @@ services:
     ccdn_forum_forum.form.handler.post_unlock:
         class: %ccdn_forum_forum.form.handler.post_unlock.class%
         arguments:
-            - @event_dispatcher
-            - @form.factory
-            - @ccdn_forum_forum.form.type.post_unlock
-            - @ccdn_forum_forum.model.post
+            - "@event_dispatcher"
+            - "@form.factory"
+            - "@ccdn_forum_forum.form.type.post_unlock"
+            - "@ccdn_forum_forum.model.post"
