@@ -14,7 +14,7 @@
 namespace CCDNForum\ForumBundle\Entity;
 
 use CCDNForum\ForumBundle\Entity\Model\Category as AbstractCategory;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 /**
  *
@@ -174,17 +174,17 @@ class Category extends AbstractCategory
 
     /**
      *
-     * @param  SecurityContextInterface $securityContext
+     * @param  AuthorizationChecker $security
      * @return bool
      */
-    public function isAuthorisedToRead(SecurityContextInterface $securityContext)
+    public function isAuthorisedToRead(AuthorizationChecker $security)
     {
         if (0 == count($this->readAuthorisedRoles)) {
             return true;
         }
 
         foreach ($this->readAuthorisedRoles as $role) {
-            if ($securityContext->isGranted($role)) {
+            if ($security->isGranted($role)) {
                 return true;
             }
         }

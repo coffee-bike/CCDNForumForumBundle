@@ -14,7 +14,7 @@
 namespace CCDNForum\ForumBundle\Entity;
 
 use CCDNForum\ForumBundle\Entity\Model\Board as AbstractBoard;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 /**
  *
@@ -286,18 +286,18 @@ class Board extends AbstractBoard
     }
 
     /**
-     * @param SecurityContextInterface $securityContext
+     * @param AuthorizationChecker $security
      *
      * @return bool
      */
-    public function isAuthorisedToRead(SecurityContextInterface $securityContext)
+    public function isAuthorisedToRead(AuthorizationChecker $security)
     {
         if (0 == count($this->readAuthorisedRoles)) {
             return true;
         }
 
         foreach ($this->readAuthorisedRoles as $role) {
-            if ($securityContext->isGranted($role)) {
+            if ($security->isGranted($role)) {
                 return true;
             }
         }
@@ -336,18 +336,18 @@ class Board extends AbstractBoard
     }
 
     /**
-     * @param SecurityContextInterface $securityContext
+     * @param AuthorizationChecker $security
      *
      * @return bool
      */
-    public function isAuthorisedToCreateTopic(SecurityContextInterface $securityContext)
+    public function isAuthorisedToCreateTopic(AuthorizationChecker $security)
     {
         if (0 == count($this->topicCreateAuthorisedRoles)) {
             return true;
         }
 
         foreach ($this->topicCreateAuthorisedRoles as $role) {
-            if ($securityContext->isGranted($role)) {
+            if ($security->isGranted($role)) {
                 return true;
             }
         }
@@ -386,18 +386,18 @@ class Board extends AbstractBoard
     }
 
     /**
-     * @param SecurityContextInterface $securityContext
+     * @param AuthorizationChecker $security
      *
      * @return bool
      */
-    public function isAuthorisedToReplyToTopic(SecurityContextInterface $securityContext)
+    public function isAuthorisedToReplyToTopic(AuthorizationChecker $security)
     {
         if (0 == count($this->topicReplyAuthorisedRoles)) {
             return true;
         }
 
         foreach ($this->topicReplyAuthorisedRoles as $role) {
-            if ($securityContext->isGranted($role)) {
+            if ($security->isGranted($role)) {
                 return true;
             }
         }

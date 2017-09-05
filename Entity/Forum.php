@@ -14,7 +14,7 @@
 namespace CCDNForum\ForumBundle\Entity;
 
 use CCDNForum\ForumBundle\Entity\Model\Forum as AbstractForum;
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
 /**
  *
@@ -127,10 +127,10 @@ class Forum extends AbstractForum
 
     /**
      *
-     * @param  SecurityContextInterface $securityContext
+     * @param  AuthorizationChecker $security
      * @return bool
      */
-    public function isAuthorisedToRead(SecurityContextInterface $securityContext)
+    public function isAuthorisedToRead(AuthorizationChecker $security)
     {
         if (0 == count($this->readAuthorisedRoles)) {
             return true;
