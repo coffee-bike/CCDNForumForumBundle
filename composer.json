@@ -1,8 +1,8 @@
 {
     "name": "coffeebike/ccdn-forum-bundle",
     "description": "CCDN Forum Bundle",
-    "keywords": ["ccdn", "codeconsortium", "forum", "board"],
-    "homepage": "http://github.com/codeconsortium/CCDNForumForumBundle",
+    "keywords": ["ccdn", "codeconsortium", "coffeebike", "forum", "board"],
+    "homepage": "https://github.com/coffee-bike/CCDNForumForumBundle",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
